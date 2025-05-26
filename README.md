@@ -26,3 +26,7 @@ sequenceDiagram
     GameServer-->>Players: High latency / disconnections
     Players->>GameServer: Attempt to reconnect
     GameServer-->>Attacker: Overloaded / may crash
+Attacker controls a Botnet (network of compromised devices).
+The Botnet sends a huge volume of malicious traffic to the Counter-Strike 2 Server via the Internet.
+The server becomes overloaded and starts dropping connections, impacting legitimate Players.
+Players might experience high ping, lag, or be disconnected entirely.
