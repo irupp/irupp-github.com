@@ -3,7 +3,7 @@ Ian Rupp
 irupp@my.waketechy.edu
 This is my school account 
 This will hold assingments and project
-#About Me
+# About Me
 ## My Intrestes
 I enjoy producing Dubstep and Riddim, playing soccer, and also video games in my free time. I am expecting my first daughter sep 20th 2025 and i am very excited
 ## Websites I recommend 
