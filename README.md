@@ -10,6 +10,10 @@ I enjoy producing Dubstep and Riddim my stage name is EERIE for anyone intersted
 [Avant](https://avantsamples.com/courses/samplifire-producers-guide/) I find this useful for anyone wanting to learn how to produce EDM
 [HackMe](https://tryhackme.com/paths) I find this useful for anyone wanting to practice and learn more about cyber security and IT
 ## DDos_Attack_sequence.md
+Attacker controls a Botnet (network of compromised devices).
+The Botnet sends a huge volume of malicious traffic to the Counter-Strike 2 Server via the Internet.
+The server becomes overloaded and starts dropping connections, impacting legitimate Players.
+Players might experience high ping, lag, or be disconnected entirely.
 ```mermaid
 sequenceDiagram
     participant Attacker
