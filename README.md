@@ -5,7 +5,7 @@ This is my school account
 This will hold assingments and project
 # About Me
 ## My Intrestes
-I enjoy producing Dubstep and Riddim, playing soccer, and also video games in my free time. I am expecting my first daughter sep 20th 2025 and I am very excited
+I enjoy producing Dubstep and Riddim my stage name is EERIE for anyone intersted, playing soccer any chance I can get as I have been playing for 23 years, and also video games in my free time with my buddies who got me on the journey of building Pc's we mainly play CS2.I am also expecting my first daughter sep 20th 2025 and I am very excited to become a father
 ## Websites I recommend 
 [Avant](https://avantsamples.com/courses/samplifire-producers-guide/) I find this useful for anyone wanting to learn how to produce EDM
 [HackMe](https://tryhackme.com/paths) I find this useful for anyone wanting to practice and learn more about cyber security and IT
