@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gradebook</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gradebook</h1>
+
+  <table id="gradebook">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Assignment 1</th>
+        <th>Assignment 2</th>
+        <th>Assignment 3</th>
+        <!-- Add more assignments as needed -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Student grade rows will go here -->
+    </tbody>
+  </table>
+
+  <script>
+    // Stub: Function to fetch grade data from PostgreSQL (to be implemented later)
+    function fetchGradeData() {
+      // This function will connect to a backend API that queries PostgreSQL
+      // and returns student and grade data.
+    }
+
+    // Stub: Function to populate table with grade data
+    function populateGradebook(data) {
+      // 'data' will be an array of student grade objects
+      // Example: [{name: "John Doe", grades: [90, 85, 92]}, ...]
+    }
+
+    // Stub: Initialize gradebook on page load
+    function initGradebook() {
+      // This will eventually call fetchGradeData and populateGradebook
+    }
+
+    // Initialize on load
+    window.onload = initGradebook;
+  </script>
+
+</body>
+</html>
