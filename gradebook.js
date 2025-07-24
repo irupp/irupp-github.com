@@ -26,3 +26,30 @@ function populateGradebook() {
 window.onload = function () {
     populateGradebook();
 };
+document.addEventListener('DOMContentLoaded', fetchGradeData);
+
+async function fetchGradeData() {
+    try {
+        const response = await fetch('/grades');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        populateGradebook(data);
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+
+function populateGradebook(data) {
+    const tableBody = document.getElementById('gradebookBody');
+    tableBody.innerHTML = ''; // Clear previous rows
+
+    data.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.assignment}</td>
+            <td>${item.grade}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
