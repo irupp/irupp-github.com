@@ -29,38 +29,73 @@
 
   <table id="gradebook">
     <thead>
-      <tr>
+      <tr id="headerRow">
         <th>Student Name</th>
-        <th>Assignment 1</th>
-        <th>Assignment 2</th>
-        <th>Assignment 3</th>
-        <!-- Add more assignments as needed -->
+        <!-- Assignment headers will go here -->
       </tr>
     </thead>
-    <tbody>
-      <!-- Student grade rows will go here -->
+    <tbody id="gradebookBody">
+      <!-- Student grade rows will be inserted here -->
     </tbody>
   </table>
 
   <script>
-    // Stub: Function to fetch grade data from PostgreSQL (to be implemented later)
-    function fetchGradeData() {
-      // This function will connect to a backend API that queries PostgreSQL
-      // and returns student and grade data.
+    async function fetchGradeData() {
+      try {
+        const response = await fetch('/grades');
+        if (!response.ok) throw new Error('Failed to fetch data from server');
+        const data = await response.json();
+        populateGradebook(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
 
-    // Stub: Function to populate table with grade data
     function populateGradebook(data) {
-      // 'data' will be an array of student grade objects
-      // Example: [{name: "John Doe", grades: [90, 85, 92]}, ...]
+      const tableHeader = document.getElementById('headerRow');
+      const tableBody = document.getElementById('gradebookBody');
+      tableBody.innerHTML = ''; // Clear existing rows
+
+      // Get all unique assignment names (dynamically)
+      const assignments = [...new Set(data.map(item => item.assignment))];
+
+      // Add assignment headers
+      assignments.forEach(assignment => {
+        const th = document.createElement('th');
+        th.textContent = assignment;
+        tableHeader.appendChild(th);
+      });
+
+      // Group data by student
+      const students = {};
+      data.forEach(entry => {
+        if (!students[entry.name]) {
+          students[entry.name] = {};
+        }
+        students[entry.name][entry.assignment] = entry.grade;
+      });
+
+      // Create table rows per student
+      for (const [studentName, grades] of Object.entries(students)) {
+        const row = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        nameCell.textContent = studentName;
+        row.appendChild(nameCell);
+
+        assignments.forEach(assignment => {
+          const gradeCell = document.createElement('td');
+          gradeCell.textContent = grades[assignment] !== undefined ? grades[assignment] : '-';
+          row.appendChild(gradeCell);
+        });
+
+        tableBody.appendChild(row);
+      }
     }
 
-    // Stub: Initialize gradebook on page load
     function initGradebook() {
-      // This will eventually call fetchGradeData and populateGradebook
+      fetchGradeData();
     }
 
-    // Initialize on load
     window.onload = initGradebook;
   </script>
 
