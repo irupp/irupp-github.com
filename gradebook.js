@@ -1,33 +1,4 @@
-// Function to fetch student data from the database
-function fetchStudents() {
-    // TODO: Implement database call to get student names
-    console.log("Fetching students...");
-}
-
-// Function to fetch assignment data from the database
-function fetchAssignments() {
-    // TODO: Implement database call to get assignment names
-    console.log("Fetching assignments...");
-}
-
-// Function to fetch grades for all students and assignments
-function fetchGrades() {
-    // TODO: Implement database call to get student grades
-    console.log("Fetching grades...");
-}
-
-// Function to populate the gradebook table in HTML
-function populateGradebook() {
-    // TODO: Call fetch functions and update the DOM with data
-    console.log("Populating gradebook...");
-}
-
-// Call this function when the page loads
-window.onload = function () {
-    populateGradebook();
-};
-document.addEventListener('DOMContentLoaded', fetchGradeData);
-
+// ✅ Fetch grade data from the server and populate the gradebook
 async function fetchGradeData() {
     try {
         const response = await fetch('/grades');
@@ -39,9 +10,10 @@ async function fetchGradeData() {
     }
 }
 
+// ✅ Populate the HTML table with fetched grade data
 function populateGradebook(data) {
     const tableBody = document.getElementById('gradebookBody');
-    tableBody.innerHTML = ''; // Clear previous rows
+    tableBody.innerHTML = ''; // Clear existing rows
 
     data.forEach(item => {
         const row = document.createElement('tr');
@@ -53,3 +25,22 @@ function populateGradebook(data) {
         tableBody.appendChild(row);
     });
 }
+
+// 🧼 Optional placeholders for future use:
+function fetchStudents() {
+    // Placeholder: add functionality if needed
+    console.log("Fetching students...");
+}
+
+function fetchAssignments() {
+    // Placeholder: add functionality if needed
+    console.log("Fetching assignments...");
+}
+
+function fetchGrades() {
+    // Placeholder: add functionality if needed
+    console.log("Fetching grades...");
+}
+
+// ✅ Load grade data once DOM is ready
+document.addEventListener('DOMContentLoaded', fetchGradeData);
