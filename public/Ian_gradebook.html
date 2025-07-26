@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gradebook</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gradebook</h1>
+
+  <table id="gradebook">
+    <thead>
+      <tr id="headerRow">
+        <th>Student Name</th>
+        <!-- Assignment headers will go here -->
+      </tr>
+    </thead>
+    <tbody id="gradebookBody">
+      <!-- Student grade rows will be inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    async function fetchGradeData() {
+      try {
+        const response = await fetch('/grades');
+        if (!response.ok) throw new Error('Failed to fetch data from server');
+        const data = await response.json();
+        populateGradebook(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    function populateGradebook(data) {
+      const tableHeader = document.getElementById('headerRow');
+      const tableBody = document.getElementById('gradebookBody');
+      tableBody.innerHTML = ''; // Clear existing rows
+
+      // Get all unique assignment names (dynamically)
+      const assignments = [...new Set(data.map(item => item.assignment))];
+
+      // Add assignment headers
+      assignments.forEach(assignment => {
+        const th = document.createElement('th');
+        th.textContent = assignment;
+        tableHeader.appendChild(th);
+      });
+
+      // Group data by student
+      const students = {};
+      data.forEach(entry => {
+        if (!students[entry.name]) {
+          students[entry.name] = {};
+        }
+        students[entry.name][entry.assignment] = entry.grade;
+      });
+
+      // Create table rows per student
+      for (const [studentName, grades] of Object.entries(students)) {
+        const row = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        nameCell.textContent = studentName;
+        row.appendChild(nameCell);
+
+        assignments.forEach(assignment => {
+          const gradeCell = document.createElement('td');
+          gradeCell.textContent = grades[assignment] !== undefined ? grades[assignment] : '-';
+          row.appendChild(gradeCell);
+        });
+
+        tableBody.appendChild(row);
+      }
+    }
+
+    function initGradebook() {
+      fetchGradeData();
+    }
+
+    window.onload = initGradebook;
+  </script>
+
+</body>
+</html>
